@@ -58,7 +58,10 @@ public class BlogDTO {
             public void setPublishDate(Date publishDate) {
                 this.publishDate = publishDate;
             }
-            
+            @Override
+            public String toString() {
+                return this.id + "," + this.title + "," + this.content + "," + this.author + "," + this.publishDate;
+            }
             
             
 }

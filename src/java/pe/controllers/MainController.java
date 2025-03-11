@@ -19,6 +19,7 @@ public class MainController extends HttpServlet {
     private static final String BLOG_EDIT = "blogEditPage/blogEdit.jsp";
     private static final String BLOG_ERROR = "errorPage/errorPage.jsp";
     private static final String BLOG_CREATE = "blogCreatePage/blogCreate.jsp";
+    private static final String CART_PAGE = "cartPage/cartPage.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -159,7 +160,16 @@ public class MainController extends HttpServlet {
                          url = BLOG_PAGE;
             }
             else if(request.getParameter("action").equalsIgnoreCase("cartShow")) {
-                        System.out.println("I'm in the cart show module");
+                        List<BlogDTO> cart = (List<BlogDTO>) request.getSession().getAttribute("usercart");
+                        session.setAttribute("usercart", cart);
+                        url = CART_PAGE;
+            }
+            else if(request.getParameter("action").equalsIgnoreCase("logout")) {
+                        session = request.getSession(false);
+                        if(session != null) {
+                                    session.invalidate();
+                        }
+                        url = LOGIN_PAGE;
             }
             else {
                 url = LOGIN_PAGE;
@@ -168,7 +178,6 @@ public class MainController extends HttpServlet {
         } catch (Exception e) {
             log("Error at MainController: " + e.toString());
         } finally {
-            // Forward tới trang đích (url)
             request.getRequestDispatcher(url).forward(request, response);
         }
     }
