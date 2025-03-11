@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/D:/Dai_Hoc/CN4/PRJ301/PE_PRJ301/web/loginPage/loginPage.css</file>
+            <file>file:/D:/Dai_Hoc/CN4/PRJ301/PE_PRJ301/web/WEB-INF/web.xml</file>
+            <file>file:/D:/Dai_Hoc/CN4/PRJ301/PE_PRJ301/src/java/pe/utils/DBUtils.java</file>
+            <file>file:/D:/Dai_Hoc/CN4/PRJ301/PE_PRJ301/src/java/pe/users/UserDAO.java</file>
+            <file>file:/D:/Dai_Hoc/CN4/PRJ301/PE_PRJ301/web/blogEditPage/blogEdit.css</file>
+            <file>file:/D:/Dai_Hoc/CN4/PRJ301/PE_PRJ301/src/java/pe/controllers/MainController.java</file>
+            <file>file:/D:/Dai_Hoc/CN4/PRJ301/PE_PRJ301/src/java/pe/blogs/BlogDTO.java</file>
+            <file>file:/D:/Dai_Hoc/CN4/PRJ301/PE_PRJ301/src/java/pe/blogs/BlogDAO.java</file>
+            <file>file:/D:/Dai_Hoc/CN4/PRJ301/PE_PRJ301/web/META-INF/context.xml</file>
+            <file>file:/D:/Dai_Hoc/CN4/PRJ301/PE_PRJ301/web/blogEditPage/blogEdit.jsp</file>
+            <file>file:/D:/Dai_Hoc/CN4/PRJ301/PE_PRJ301/web/blogPage/blogPage.css</file>
+            <file>file:/D:/Dai_Hoc/CN4/PRJ301/PE_PRJ301/web/errorPage/errorPage.jsp</file>
+            <file>file:/D:/Dai_Hoc/CN4/PRJ301/PE_PRJ301/web/blogCreatePage/blogCreate.jsp</file>
+            <file>file:/D:/Dai_Hoc/CN4/PRJ301/PE_PRJ301/web/blogDetailPage/blogDetail.css</file>
+            <file>file:/D:/Dai_Hoc/CN4/PRJ301/PE_PRJ301/web/loginPage/login.jsp</file>
+            <file>file:/D:/Dai_Hoc/CN4/PRJ301/PE_PRJ301/src/java/pe/users/UserDTO.java</file>
+            <file>file:/D:/Dai_Hoc/CN4/PRJ301/PE_PRJ301/web/errorPage/errorPage.css</file>
+            <file>file:/D:/Dai_Hoc/CN4/PRJ301/PE_PRJ301/web/blogCreatePage/blogCreate.css</file>
+            <file>file:/D:/Dai_Hoc/CN4/PRJ301/PE_PRJ301/web/blogDetailPage/blogDetail.jsp</file>
+            <file>file:/D:/Dai_Hoc/CN4/PRJ301/PE_PRJ301/web/blogPage/blogPage.jsp</file>
+        </group>
+    </open-files>
+</project-private>
