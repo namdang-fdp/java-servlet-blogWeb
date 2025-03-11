@@ -65,7 +65,21 @@
             margin-bottom: 15px;
             color: #000000;
         }
-        
+        .gray-modern-btn {
+              background-color: #f8f9fa;    
+              border: 1px solid #ccc;      
+              border-radius: 4px;         
+              padding: 8px 12px;         
+              color: #333;                  
+              font-size: 14px;             
+              cursor: pointer;             
+              transition: background-color 0.3s ease; 
+            }
+
+            .gray-modern-btn:hover {
+              background-color: #e2e6ea;    
+            }
+
         .missing-fields ul {
             padding-left: 20px;
         }

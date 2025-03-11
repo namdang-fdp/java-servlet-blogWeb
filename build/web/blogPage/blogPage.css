@@ -77,7 +77,7 @@
             box-shadow: var(--shadow-md);
             overflow: hidden;
         }
-
+        
         .welcome-container::before {
             content: '';
             position: absolute;
@@ -91,7 +91,15 @@
             background-size: 8px 8px;
             opacity: 0.3;
         }
-
+        .logout-btn button {
+                all: unset; /* Xóa mọi định dạng mặc định của button */
+                cursor: pointer; /* Giữ kiểu click giống thẻ a */
+                 color: inherit; /* Giữ màu chữ theo class cũ */
+            }
+            .delete-form {
+                margin: 0;
+                padding: 0;
+            }
         .welcome-message {
             font-weight: 700;
             font-size: 1.2rem;

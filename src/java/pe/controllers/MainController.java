@@ -24,24 +24,18 @@ public class MainController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
         // Trang mặc định
         String url = LOGIN_PAGE;
-
         try {
             String action = request.getParameter("action");
             HttpSession session = request.getSession();
             BlogDAO blogDao = new BlogDAO();
-            // search --> session != null
             if ("login".equalsIgnoreCase(action) || session == null) {
                     if("login".equalsIgnoreCase(action)) {
                     String username = request.getParameter("username");
-                    
                     String password = request.getParameter("password");
-
                     UserDAO userDao = new UserDAO();
                     UserDTO user = userDao.login(username, password);
-
                     if (user != null) {
                         session = request.getSession(true);
                         session.setAttribute("usersession", user);
@@ -55,6 +49,11 @@ public class MainController extends HttpServlet {
                         url = LOGIN_PAGE;
                     }
                 } 
+            }
+            else if(request.getParameter("action").equalsIgnoreCase("list")) {
+                        List<BlogDTO> blogList = blogDao.getAllBlogs();
+                        request.setAttribute("BLOG_LIST", blogList);
+                        url = BLOG_PAGE;
             }
             else if(request.getParameter("action").equalsIgnoreCase("Searching")) {
                         String keyword = request.getParameter("keyword");
@@ -88,6 +87,7 @@ public class MainController extends HttpServlet {
             else if(request.getParameter("action").equalsIgnoreCase("edit")) {
                         session = request.getSession(false);
                         UserDTO user = (UserDTO)session.getAttribute("usersession");
+                        String transferId = request.getParameter("id");
                         String id = request.getParameter("blogId");
                         String title = request.getParameter("title");
                         String content = request.getParameter("content");
@@ -95,6 +95,7 @@ public class MainController extends HttpServlet {
                         String publishDate = request.getParameter("publicationDate");    
                         LocalDate updateDate = LocalDate.parse(publishDate);
                         if(id.equals("") || title.equals("") || content.equals("") || author.equals("") || publishDate.equals("") ) {
+                                    request.setAttribute("id", transferId);
                                     url = BLOG_ERROR;
                         }
                         else {
@@ -131,7 +132,12 @@ public class MainController extends HttpServlet {
                         session = request.getSession(false);
                         UserDTO user = (UserDTO) session.getAttribute("usersession");
                         String id = request.getParameter("postId");
+                        int intId = Integer.parseInt(id);
                         int success = blogDao.deleteBlog(id);
+                        List<BlogDTO> cart = (List<BlogDTO>) request.getSession().getAttribute("usercart");
+                        if(cart != null) {
+                                cart.removeIf(blog -> blog.getId() == intId);
+                        }
                         List<BlogDTO> blogList = blogDao.getAllBlogs();
                         request.setAttribute("BLOG_LIST", blogList);
                         url = BLOG_PAGE;   

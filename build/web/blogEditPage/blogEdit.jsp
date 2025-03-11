@@ -17,7 +17,8 @@
         <div class="logo">BlogEditor</div>
         <div class="user-actions">
             <span class="user-greeting">Hello <%= name%></span>
-            <form action="/logout" method="post" style="display: inline;">
+            <form action="MainController" method="post" style="display: inline;">
+                <input type="hidden" name="action" value="logout">
                 <button type="submit" class="logout-btn">Logout</button>
             </form>
         </div>
@@ -29,14 +30,14 @@
     <main>
         <section class="editor-card">
             <h1 class="page-title">Edit Blog Post</h1>
-            <form action="MainController" method="GET">
+            <form action="MainController" method="POST">
                 <input type="hidden" name="action" value="edit">
-                 <input type="hidden" name="usersession" value="<%= user %>">
+                <input type="hidden" name="id" value="${blog.getId()}"
                 <div class="form-group">
                     <label for="blogId">ID</label>
                     <input type="text" id="blogId" name="blogId" value="${blog.getId()}"  />
                 </div>
-                
+
                 <div class="form-group">
                     <label for="title">Title</label>
                     <input type="text" id="title" name="title" value="${blog.getTitle()}" >

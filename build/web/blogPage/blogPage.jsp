@@ -23,7 +23,10 @@
                 </div>
             </div>
             <div class="header-right">
-                <a href="#" class="logout-btn">Log out</a>
+                <form action="MainController" method="POST" class="logout-btn">
+                    <input type="hidden" name="action" value="logout">
+                    <button type="submit">Log out</button>
+                </form>
             </div>
         </div>
     </header>
@@ -33,9 +36,8 @@
             <div class="page-header">
                 <h2>Blog Posts</h2>
                 <div class="search-forms-container">
-                    <form action="MainController" class="search-form" method="POST">
+                    <form action="MainController" class="search-form" method="GET">
                         <input type="hidden" name="action" value="searching">
-                        <input type="hidden" name="usersession" value="<%= user %>">
                          <div class="search-wrapper">
                                  <div class="search-icon"></div> 
                                 <input name="keyword" type="text" class="search-input" placeholder="Search" value="<%=request.getParameter("keyword")!=null?request.getParameter("keyword"):""%>">
@@ -45,9 +47,8 @@
                 </div>
             </div>
              <div class="filter-cart-container">
-            <form action="MainController" class="date-search-form" method="POST">
+            <form action="MainController" class="date-search-form" method="GET">
                 <input type="hidden" name="action" value="searchingByDate">
-                <input type="hidden" name="usersession" value="<%= user %>">
                 <div class="date-search-wrapper">
                     <div class="date-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -60,7 +61,6 @@
             </form>
                 <form action="MainController" method="GET">
                         <input type="hidden" name="action" value="cartShow">
-                        <input type="hidden" name="usersession" value="<%= user %>">
                         <button type="submit" class="cart-button">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                           <circle cx="9" cy="21" r="1"></circle>
@@ -96,7 +96,6 @@
                                     <form class="blog-id-container" action="MainController" method="GET">
                                                 <input type="hidden" name="action" value="detail">
                                                 <input type ="hidden" name="id" value="${blog.getId()}">
-                                                <input type="hidden" name="usersession" value="<%= user %>">
                                                 <div class="blog-id">${blog.getId()}</div>
                                                 <button type="submit" class="blog-edit" style="border: none; background: none; cursor: pointer; width: 100%; height: 100%;">✏️</button>
                                     </form>
@@ -109,9 +108,14 @@
                                                   String author = blog.getAuthor();
                                                   String[] parts = author.split(" ");
                                                   String result = "";
-                                                  for(int i = 0; i < 2; i++) {
-                                                            result += parts[i].substring(0, 1);
+                                                  if(parts.length ==  1) {
+                                                            result = String.valueOf(parts[0].charAt(0));
                                                   }
+                                                  else {
+                                                            for(int i = 0; i < 2; i++) {
+                                                                        result += parts[i].substring(0, 1);
+                                                              }
+                                                  }                                                   
                                                     result = result.toUpperCase();
                                                     %>
                                                     <%= result %>
@@ -120,14 +124,13 @@
                             </td>
                             <td class="blog-date">${blog.publishDate}</td>
                             <td class="action-buttons">
-                                  <form method="GET" action="MainController" style="display: inline;">
+                                  <form method="POST" action="MainController" style="display: inline;">
                                     <input type="hidden" name="action" value="addToCart">
                                     <input type="hidden" name="blogId" value="${blog.getId()}">
                                     <input type="hidden" name="title" value="${blog.getTitle()}">
                                     <input type="hidden" name="content" value="${blog.getContent()}">
                                     <input type="hidden" name="author" value="${blog.getAuthor()}">
                                     <input type="hidden" name="publishDate" value="${blog.getPublishDate()}">
-                                    <input type="hidden" name="usersession" value="<%= user %>">
                                     <button type="submit" class="cart-btn">
                                       <svg class="cart-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <circle cx="9" cy="21" r="1"></circle>
@@ -149,7 +152,6 @@
             </div>
             <form class="create-button-container" action="MainController" method="GET">
                         <input type="hidden" name="action" value="forwardToCreate">
-                        <input type="hidden" name="usersession" value="<%= user %>">
                     <button type="submit" class="create-button">
                      <span class="create-button-icon"></span>
                             Create New Post

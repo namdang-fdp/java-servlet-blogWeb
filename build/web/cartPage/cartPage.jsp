@@ -13,15 +13,20 @@
         <% 
                 UserDTO user = (UserDTO)session.getAttribute("usersession"); 
                 String name =user.getName();
+                List <BlogDTO> cart = (List <BlogDTO>) session.getAttribute("usercart");
+                int numberOfBlog = cart.size();
          %>
             <header>
         <div class="header-container">
-            <a href="#" class="logo">BlogCart</a>
+            <a href="" class="logo">BlogCart</a>
             <nav class="nav-links">
-                <a href="#" class="blogs-btn">Blogs</a>
+                <form action="MainController" method="GET" class="blogs-form">
+                    <input type="hidden" name="action" value="list">
+                    <button type="submit">Blogs</button>
+                </form>
                 <a href="#" class="cart-icon">
                     Cart
-                    <span class="cart-count">3</span>
+                    <span class="cart-count"><%= numberOfBlog%></span>
                 </a>
             </nav>
         </div>
@@ -45,8 +50,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                        <%
-                                    List <BlogDTO> cart = (List <BlogDTO>) session.getAttribute("usercart");
+                        <% 
                                     for (BlogDTO blog : cart){
                                                 pageContext.setAttribute("blog", blog);
                          %>
@@ -58,19 +62,27 @@
                         <td class="blog-content">${blog.getContent()}</td>
                         <td>
                             <div class="blog-author">
-                                <div class="author-avatar">ND</div>
+                                <div class="author-avatar">
+                                    <%
+                                                  String author = blog.getAuthor();
+                                                  String[] parts = author.split(" ");
+                                                  String result = "";
+                                                  if(parts.length ==  1) {
+                                                            result = String.valueOf(parts[0].charAt(0));
+                                                  }
+                                                  else {
+                                                            for(int i = 0; i < 2; i++) {
+                                                                        result += parts[i].substring(0, 1);
+                                                              }
+                                                  }                                                   
+                                                    result = result.toUpperCase();
+                                                    %>
+                                                    <%= result %>
+                                </div>
                                 <span>${blog.getAuthor()}</span>
                             </div>
                         </td>
                         <td class="blog-date">${blog.getPublishDate()}</td>
-                        <td>
-                            <button type="button" class="remove-btn" name="remove" value="1">
-                                <svg class="remove-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                                </svg>
-                            </button>
-                        </td>
                     </tr>
                     <%  } %>
                 </tbody>
@@ -81,12 +93,11 @@
                 <h2 class="summary-title">Order Summary</h2>
                 <div class="summary-item">
                     <span>Blogs in cart</span>
-                    <span>3</span>
+                    <span><%= numberOfBlog%> </span>
                 </div>
             </div>
         </form>
 
-        <!-- Empty Cart State (hidden by default) -->
         <div class="cart-container" style="display: none;">
             <div class="empty-cart">
                 <div class="empty-cart-icon">📚</div>

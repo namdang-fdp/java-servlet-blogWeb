@@ -21,17 +21,26 @@
                 </div>
 
                 <div class="missing-fields">
-                    <h3>The following information is missing:</h3>
+                    <h3>Check out all of the following information:</h3>
                     <ul>
+                        <li>ID</li>
                         <li>Title</li>
                         <li>Author</li>
                         <li>Publication Date</li>
                         <li>Content</li>
                     </ul>
                 </div>
-
+                        <%
+                            String blogId = (String) request.getAttribute("id");
+                        %>
                 <div class="button-container">
-                    <a href="index.html" class="back-button">Return to Form</a>
+                    <form action="MainController" method="GET" class="back-button">
+                        <input type="hidden" name="action" value="forwardToEdit">
+                        <input type ="hidden" name="id" value="<%= blogId %>">
+                        <button type="submit"  class="gray-modern-btn">
+                                Return to Form
+                        </button>
+                    </form>
                 </div>
             </div>
     </body>

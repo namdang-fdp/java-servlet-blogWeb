@@ -38,9 +38,14 @@
                                       String author = blog.getAuthor();
                                       String[] parts = author.split(" ");
                                       String result = "";
-                                      for(int i = 0; i < 2; i++) {
-                                                result += parts[i].substring(0, 1);
+                                      if(parts.length ==  1) {
+                                                result = String.valueOf(parts[0].charAt(0));
                                       }
+                                      else {
+                                                for(int i = 0; i < 2; i++) {
+                                                            result += parts[i].substring(0, 1);
+                                                  }
+                                      }                                                   
                                         result = result.toUpperCase();
                                         %>
                                         <%= result %>
@@ -62,16 +67,18 @@
             </div>
             
             <div class="actions">
-                <a href="#" class="back-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                    </svg>
-                    Back to List
-                </a>
+                <form action="MainController" method="GET" class="back-btn">
+                          <input type="hidden" name="action" value="list" />
+                          <button type="submit" style="background: none; border: none; cursor: pointer;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                            </svg>
+                            Back to List
+                          </button>
+                </form>
                 <form action="MainController" method="GET">
                     <input type="hidden" name="action" value="forwardToEdit">
                     <input type ="hidden" name="id" value="${blog.getId()}">
-                    <input type="hidden" name="usersession" value="<%= user %>">
                     <button type="submit" class="edit-btn">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
